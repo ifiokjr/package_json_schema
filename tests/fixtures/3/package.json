@@ -1,0 +1,9 @@
+{
+  "version": "0.1.0",
+  "dependencies": {
+    "@sveltejs/kit": "1.0.0-next.396"
+  },
+  "peerDependencies": {
+    "aws-sdk": "2.1185.0"
+  }
+}

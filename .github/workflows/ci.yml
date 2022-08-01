@@ -1,0 +1,48 @@
+name: ci
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    name: test rust $${{matrix.rust}}
+    strategy:
+      fail-fast: false
+      matrix:
+        rust: [nightly, beta, stable, 1.60.0]
+
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🏴‍☠️ Checkout
+        uses: actions/checkout@v3
+
+      - name: 🦀 Install rust
+        uses: ./.github/actions/rust
+        with:
+          toolchain: ${{matrix.rust}}
+
+      - name: 🩺 Format
+        if: matrix.rust == 'stable'
+        uses: dprint/check@v2.0
+
+      - name: 👩‍⚕️ Lint
+        if: matrix.rust == 'stable'
+        run: cargo clippy
+
+      - name: ✅ Test
+        run: |
+          cargo test
+          cargo test --all-features
+
+      - name: ⛩ Check
+        run: |
+          cargo check
+          cargo check --all-features
