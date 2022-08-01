@@ -1,26 +1,40 @@
-# package_json_schema
+# 📦️ package_json_schema
+
+<br />
 
 > Load a `package.json` file as a PackageJson `struct`.
 
-[![example workflow](https://github.com/ifiokjr/package_json_schema/workflows/ci/badge.svg)](https://github.com/ifiokjr/package_json_schema/actions?query=workflow:ci)
+<p align="center">
+  <a href="https://github.com/ifiokjr/package_json_schema/actions?query=workflow:ci">
+    <img src="https://github.com/ifiokjr/package_json_schema/workflows/ci/badge.svg?branch=main" alt="Continuous integration badge for github actions" title="CI Badge" />
+  </a>
+</p>
+
+<br />
 
 ## Why?
 
 You want to load a `package.json` file and interact with it as a struct.
 
+<br />
+
 ## Installation
 
-Add this line to the `dependencies` section of your `Cargo.toml`:
+Add this line to the `[dependencies]` section of your `Cargo.toml`:
 
 ```toml
 package_json_schema = "0.1.0"
 ```
 
-If you would like to include validation then add the `validate` feature. This will validate all the fields the loaded json. Emails, the package name, the version.
+If you would like to include validation then add the `validate` feature.
 
 ```toml
 package_json_schema = { version = "0.1.0", features = ["validate"] }
 ```
+
+This adds the `validator` crate as a dependency and adds the `.validate()` method to the `PackageJson` struct. The fields are validated according to the [JSON schema specification](https://json.schemastore.org/package.json).
+
+<br />
 
 ## Usage
 
@@ -103,6 +117,8 @@ let package_json = PackageJson::try_from(contents).unwrap();
 #[cfg(feature = "validate")]
 package_json.validate().unwrap();
 ```
+
+<br />
 
 ## License
 
