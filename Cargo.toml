@@ -9,7 +9,6 @@ homepage = "https://github.com/ifiokjr/package_json_schema"
 include = ["src/**/*.rs", "Cargo.toml", "readme.md", "license"]
 keywords = ["schema", "package", "npm", "node", "json"]
 license = "Unlicense"
-license-file = "license"
 readme = "readme.md"
 repository = "https://github.com/ifiokjr/package_json_schema"
 description = "Parse content from `package.json` content and consume the result as a `PackageJson` struct."
