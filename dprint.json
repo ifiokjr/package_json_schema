@@ -35,7 +35,7 @@
     "reorder_impl_items": true,
     "use_field_init_shorthand": true
   },
-  "excludes": ["**/fixtures", "**/snapshots"],
+  "excludes": ["**/fixtures", "**/snapshots", "target/**"],
   "plugins": [
     "https://plugins.dprint.dev/rustfmt-0.6.2.json@886c6f3161cf020c2d75160262b0f56d74a521e05cfb91ec4f956650c8ca76ca",
     "https://plugins.dprint.dev/typescript-0.71.2.wasm",

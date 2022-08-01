@@ -2,7 +2,7 @@
 
 > Load a `package.json` file as a PackageJson `struct`.
 
-![example workflow](https://github.com/ifiokjr/package_json_schema/actions/workflows/ci/badge.svg)
+[![example workflow](https://github.com/ifiokjr/package_json_schema/workflows/ci/badge.svg)](https://github.com/ifiokjr/package_json_schema/actions?query=workflow:ci)
 
 ## Why?
 
