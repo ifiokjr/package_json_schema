@@ -11,7 +11,7 @@ on:
 
 jobs:
   test:
-    name: test rust $${{matrix.rust}}
+    name: test rust ${{matrix.rust}}
     strategy:
       fail-fast: false
       matrix:
@@ -35,7 +35,7 @@ jobs:
 
       - name: 👩‍⚕️ Lint
         if: matrix.rust == 'stable'
-        run: cargo clippy
+        run: cargo clippy -- -D warnings
 
       - name: ✅ Test
         run: |

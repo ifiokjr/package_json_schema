@@ -63,7 +63,8 @@ fn create_package_json_file_with_builder_pattern() {
     "author": "Tester",
     "custom": "value"
   }
-  "###)
+  "###
+  );
 }
 
 #[cfg(feature = "validate")]

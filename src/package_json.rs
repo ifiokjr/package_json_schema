@@ -1,4 +1,7 @@
+#![allow(clippy::use_self)]
+
 use std::fmt::Display;
+
 use cfg_if::cfg_if;
 use indexmap::IndexMap;
 use serde::Deserialize;
@@ -22,13 +25,37 @@ cfg_if! {
 /// Capture fields that aren't defined in the default implementation.
 pub type AdditionalFields = IndexMap<String, Value>;
 
-/// Rust schema for NPM `package.json` files.
+/// This is the rust schema for npm `package.json` files.
+///
+/// ```
+/// use package_json_schema::PackageJson;
+///
+/// let contents = r###"
+/// {
+///   "name": "my-package",
+///   "version": "0.1.0",
+///   "dependencies": {
+///     "@sveltejs/kit": "1.0.0-next.396"
+///   },
+///   "peerDependencies": {
+///     "aws-sdk": "2.1185.0"
+///   }
+/// }
+/// "###;
+///
+/// let package_json = PackageJson::try_from(contents).unwrap();
+/// assert_eq!(package_json.name.unwrap(), "my-package");
+/// assert_eq!(package_json.version.unwrap(), "0.1.0");
+/// ```
 #[cfg_attr(feature = "validate", derive(Validate))]
 #[derive(TypedBuilder, Serialize, Deserialize, Debug, Clone)]
 pub struct PackageJson {
   /// The name of the package.
   #[serde(default, skip_serializing_if = "Option::is_none")]
-  #[cfg_attr(feature = "validate", validate(length(min = 1, max = 214), regex = "PACKAGE_NAME_REGEX"))]
+  #[cfg_attr(
+    feature = "validate",
+    validate(length(min = 1, max = 214), regex = "PACKAGE_NAME_REGEX")
+  )]
   #[builder(default, setter(into, strip_option))]
   pub name: Option<String>,
 
@@ -309,8 +336,6 @@ pub struct PackageJson {
   pub other: Option<AdditionalFields>,
 }
 
-impl PackageJson {}
-
 impl TryFrom<&str> for PackageJson {
   type Error = crate::error::Error;
 
@@ -332,6 +357,10 @@ impl TryFrom<String> for PackageJson {
 
 impl PackageJson {
   /// Convert the [`PackageJson`] to a [Result] containing [`String`].
+  ///
+  /// # Errors
+  ///
+  /// This will return an error when the [`PackageJson`] cannot be serialized.
   pub fn try_to_string(&self) -> Result<String, crate::error::Error> {
     let content = serde_json::to_string(self).map_err(crate::Error::SerializePackageJson)?;
     Ok(content)
@@ -471,7 +500,7 @@ pub enum Type {
 
 impl Default for Type {
   fn default() -> Self {
-    Type::CommonJS
+    Self::CommonJS
   }
 }
 
@@ -515,7 +544,7 @@ cfg_if! {
 
         match self {
           Person::Object(person) => ValidationErrors::merge(result, "Person", person.validate()),
-          _ => result,
+          Person::String(_) => result,
         }
       }
     }
@@ -526,7 +555,7 @@ cfg_if! {
 /// issues should be reported. These are helpful for people who encounter issues
 /// with your package.
 #[cfg_attr(feature = "validate", derive(Validate))]
-#[derive(TypedBuilder, Serialize,Deserialize, Debug, Clone)]
+#[derive(TypedBuilder, Serialize, Deserialize, Debug, Clone)]
 pub struct BugObject {
   /// The url to your project's issue tracker.
   #[cfg_attr(feature = "validate", validate(url))]
@@ -669,7 +698,7 @@ cfg_if! {
 }
 
 #[cfg_attr(feature = "validate", derive(Validate))]
-#[derive(TypedBuilder, Serialize,Deserialize, Debug, Clone)]
+#[derive(TypedBuilder, Serialize, Deserialize, Debug, Clone)]
 pub struct ExportsObject {
   /// The module path that is resolved when this specifier is imported as a
   /// CommonJS module using the `require(...)` function.
@@ -705,7 +734,7 @@ pub struct ExportsObject {
 }
 
 #[cfg_attr(feature = "validate", derive(Validate))]
-#[derive(TypedBuilder, Serialize,Deserialize, Debug, Clone)]
+#[derive(TypedBuilder, Serialize, Deserialize, Debug, Clone)]
 pub struct Directories {
   /// If you specify a 'bin' directory, then all the files in that folder will
   /// be used as the 'bin' hash.

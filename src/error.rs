@@ -1,6 +1,6 @@
 /// The errors resulting from parsing files.
 ///
-/// Structure taken from https://kazlauskas.me/entries/errors
+/// Structure taken from [here](https://kazlauskas.me/entries/errors).
 #[non_exhaustive]
 #[derive(thiserror::Error, Debug)]
 pub enum Error {

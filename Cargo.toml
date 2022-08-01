@@ -2,26 +2,33 @@
 name = "package_json_schema"
 version = "0.0.0"
 authors = ["Ifiok Jr. <ifiokotung@gmail.com>"]
+categories = ["encoding", "config"]
 documentation = "https://docs.rs/package_json_schema"
 edition = "2021"
-include = ["src/**/*.rs", "Cargo.toml", "readme.md"]
-repository = "https://github.com/skribbledev/skribble/tree/main/crates/package_json_schema"
-description = "Parse widely used JSON file formats to their equivalent rust structs."
+homepage = "https://github.com/ifiokjr/package_json_schema"
+include = ["src/**/*.rs", "Cargo.toml", "readme.md", "license"]
+keywords = ["schema", "package.json", "npm", "node"]
+license = "Unlicense"
+license-file = "license"
+readme = "readme.md"
+repository = "https://github.com/ifiokjr/package_json_schema"
+description = "Parse content from a local `package.json` file and consume the result as a well PackageJson struct."
 
 [lib]
 crate-type = ["lib"]
 
 [dependencies]
 cfg-if = "1.0.0"
-indexmap = { version = "1", features = ["serde-1"] }
-lazy_static = "1"
-regex = "1"
-semver = "1"
-serde = { version = "1", features = ["derive"] }
-serde_json = { version = "1", features = ["preserve_order", "std"] }
-thiserror = "1"
-typed-builder = "0.10"
-validator = { version = "0.16", features = ["derive"], optional = true }
+doc-comment = "0.3.3"
+indexmap = { version = "1.9.1", features = ["serde-1"] }
+lazy_static = "1.4.0"
+regex = "1.6.0"
+semver = "1.0.12"
+serde = { version = "1.0.141", features = ["derive"] }
+serde_json = { version = "1.0.82", features = ["preserve_order", "std"] }
+thiserror = "1.0.31"
+typed-builder = "0.10.0"
+validator = { version = "0.16.0", features = ["derive"], optional = true }
 
 [dev-dependencies]
 insta = "1.17.1"
