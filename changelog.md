@@ -2,7 +2,11 @@
 
 ## [Unreleased]
 
-> [Compare](https://github.com/ifiokjr/package_json_schema/compare/0.1.2...HEAD)
+> [Compare](https://github.com/ifiokjr/package_json_schema/compare/0.2.0...HEAD)
+
+## 0.2.0
+
+> [2022-12-11](https://github.com/ifiokjr/package_json_schema/compare/0.1.2...0.2.0)
 
 - Make versions of dependencies less strict, for better compatibility with other packages.
 - Re-export the `validator` crate when the `validate` feature is enabled as requested in [#1](https://github.com/ifiokjr/package_json_schema/issues/1).
