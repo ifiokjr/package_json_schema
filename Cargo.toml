@@ -30,7 +30,7 @@ typed-builder = "0.11"
 validator = { version = "0.16", features = ["derive"], optional = true }
 
 [dev-dependencies]
-insta = "1.17.1"
+insta = { version = "1", features = ["json"] }
 
 [features]
 validate = ["dep:validator"]
