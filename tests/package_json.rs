@@ -70,7 +70,7 @@ fn create_package_json_file_with_builder_pattern() {
 #[cfg(feature = "validate")]
 #[test]
 fn invalid_name_field() {
-  use validator::Validate;
+  use package_json_schema::validator::Validate;
 
   let contents = read_to_string("./tests/fixtures/4/package.json").unwrap();
   let package_json = PackageJson::try_from(contents).unwrap();
