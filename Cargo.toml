@@ -17,20 +17,20 @@ description = "Parse content from `package.json` content and consume the result 
 crate-type = ["lib"]
 
 [dependencies]
-cfg-if = "1.0.0"
-doc-comment = "0.3.3"
-indexmap = { version = "1.9.1", features = ["serde-1"] }
-lazy_static = "1.4.0"
-regex = "1.6.0"
-semver = "1.0.12"
-serde = { version = "1.0.141", features = ["derive"] }
-serde_json = { version = "1.0.82", features = ["preserve_order", "std"] }
-thiserror = "1.0.31"
-typed-builder = "0.10.0"
-validator = { version = "0.16.0", features = ["derive"], optional = true }
+cfg-if = "1"
+doc-comment = "0.3"
+indexmap = { version = "1", features = ["serde-1"] }
+lazy_static = "1"
+regex = "1"
+semver = "1"
+serde = { version = "1", features = ["derive"] }
+serde_json = { version = "1", features = ["preserve_order", "std"] }
+thiserror = "1"
+typed-builder = "0.11"
+validator = { version = "0.16", features = ["derive"], optional = true }
 
 [dev-dependencies]
 insta = "1.17.1"
 
 [features]
-validate = ["validator"]
+validate = ["dep:validator"]

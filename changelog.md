@@ -1,6 +1,10 @@
 # Changelog
 
-## [Unreleased](https://github.com/ifiokjr/package_json_schema/compare/0.1.2...HEAD)
+## [Unreleased]
+
+> [Compare](https://github.com/ifiokjr/package_json_schema/compare/0.1.2...HEAD)
+
+Make versions of dependencies less strict, for better compatibility with other packages.
 
 ## 0.1.2
 
