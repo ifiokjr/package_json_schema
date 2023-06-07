@@ -28,8 +28,10 @@
   "[toml]": {
     "editor.defaultFormatter": "dprint.dprint"
   },
+  "[yaml]": {
+    "editor.defaultFormatter": "dprint.dprint"
+  },
   "[rust]": {
-    // "editor.defaultFormatter": "rust-lang.rust-analyzer"
     "editor.defaultFormatter": "dprint.dprint"
   },
   "rust-analyzer.checkOnSave.command": "clippy"

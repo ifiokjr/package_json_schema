@@ -30,6 +30,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           nix-cache: /tmp/nixcache
+          rust: ${{matrix.rust}}
 
       - name: cache rust dependencies
         uses: Swatinem/rust-cache@v2

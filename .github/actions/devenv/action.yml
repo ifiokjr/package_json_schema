@@ -7,6 +7,9 @@ inputs:
   nix-cache:
     description: The location of the nix cache
     required: true
+  rust:
+    description: The version of rust to use
+    required: true
 
 runs:
   using: composite
@@ -18,6 +21,10 @@ runs:
         path: ${{ inputs.nix-cache }}
         key: ${{ runner.os }}-nix-cache-${{ hashFiles('**/devenv.nix', '**/devenv.yaml', '**/devenv.lock') }}
         restore-keys: ${{ runner.os }}-nix-cache-
+
+    - name: rust toolchain
+      run: echo '[toolchain]\nchannel = "${{inputs.rust}}"\nprofile = "default"' > rust-toolchain.toml
+      shell: bash
 
     - name: install nix
       uses: cachix/install-nix-action@v20
