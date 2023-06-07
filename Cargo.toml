@@ -1,6 +1,6 @@
 [package]
 name = "package_json_schema"
-version = "0.2.0"
+version = "0.2.1"
 authors = ["Ifiok Jr. <ifiokotung@gmail.com>"]
 categories = ["encoding", "config"]
 documentation = "https://docs.rs/package_json_schema"

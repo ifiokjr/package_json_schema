@@ -2,7 +2,14 @@
 
 ## [Unreleased]
 
-> [Compare](https://github.com/ifiokjr/package_json_schema/compare/0.2.0...HEAD)
+> [Compare](https://github.com/ifiokjr/package_json_schema/compare/0.2.1...HEAD)
+
+## 0.2.1
+
+- Use the `Repository` enum in the `repository` field [#2](https://github.com/ifiokjr/package_json_schema/pull/2)
+- Update readme and crate documentation.
+
+> [Compare](https://github.com/ifiokjr/package_json_schema/compare/0.2.0...0.2.1)
 
 ## 0.2.0
 

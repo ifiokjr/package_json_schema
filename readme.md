@@ -32,13 +32,13 @@ You want to load a `package.json` file and interact with it as a struct.
 Add this line to the `[dependencies]` section of your `Cargo.toml`:
 
 ```toml
-package_json_schema = "0.2.0"
+package_json_schema = "0.2.1"
 ```
 
 If you would like to include validation then add the `validate` feature.
 
 ```toml
-package_json_schema = { version = "0.2.0", features = ["validate"] }
+package_json_schema = { version = "0.2.1", features = ["validate"] }
 ```
 
 This adds the `validator` crate as a dependency and adds the `.validate()` method to the `PackageJson` struct. The fields are validated according to the [JSON schema specification](https://json.schemastore.org/package.json).
@@ -55,7 +55,7 @@ use package_json_schema::PackageJson;
 let contents = r###"
 {
   "name": "my-package",
-  "version": "0.2.0",
+  "version": "0.0.1",
   "dependencies": {
     "@sveltejs/kit": "1.0.0-next.396"
   },
@@ -67,7 +67,7 @@ let contents = r###"
 
 let package_json = PackageJson::try_from(contents).unwrap();
 assert_eq!(package_json.name.unwrap(), "my-package");
-assert_eq!(package_json.version.unwrap(), "0.2.0");
+assert_eq!(package_json.version.unwrap(), "0.0.1");
 ```
 
 This crate leaves it to the user to load the `package.json` content from the filesystem. Here is an example of loading the file contents and parsing the contents into a struct.
@@ -109,7 +109,7 @@ assert_eq!(
 To validate the `package.json` fields, enable the `validate` feature.
 
 ```toml
-package_json_schema = { version = "0.2.0", features = ["validate"] }
+package_json_schema = { version = "0.2.1", features = ["validate"] }
 ```
 
 And then use the `validate` method.
