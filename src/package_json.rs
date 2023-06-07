@@ -182,7 +182,7 @@ pub struct PackageJson {
   /// want to contribute.
   #[serde(default, skip_serializing_if = "Option::is_none")]
   #[builder(default, setter(into, strip_option))]
-  pub repository: Option<String>,
+  pub repository: Option<Repository>,
 
   /// The 'scripts' member is an object hash of script commands that are run at
   /// various times in the lifecycle of your package. The key is the lifecycle
