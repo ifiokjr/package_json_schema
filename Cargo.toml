@@ -26,7 +26,7 @@ semver = "1"
 serde = { version = "1", features = ["derive"] }
 serde_json = { version = "1", features = ["preserve_order", "std"] }
 thiserror = "1"
-typed-builder = "0.11"
+typed-builder = "0.14"
 validator = { version = "0.16", features = ["derive"], optional = true }
 
 [dev-dependencies]

@@ -1,46 +1,60 @@
 {
   "typescript": {
     "deno": true,
+    "useTabs": false,
     "module.sortExportDeclarations": "caseInsensitive",
     "module.sortImportDeclarations": "caseInsensitive"
   },
-  "json": {
-    "deno": true
-  },
-  "markdown": {
-    "deno": true,
-    "textWrap": "never"
-  },
-  "toml": {},
-  "includes": ["**/*.{ts,tsx,js,jsx,cjs,mjs,json,jsonc,md,toml,dockerfile,rs}"],
+  "css": {},
+  "exec": { "associations": "" },
+  "incremental": true,
+  "json": { "deno": true, "useTabs": false },
+  "markdown": { "deno": true, "textWrap": "never" },
+  "toml": { "useTabs": false },
+  "includes": [
+    "**/*.{ts,tsx,js,jsx,cjs,mjs,json,jsonc,md,toml,dockerfile,rs,yml,yaml,css}"
+  ],
   "rustfmt": {
     "edition": "2021",
     "version": "Two",
-    "max_width": 100,
     "unstable_features": true,
-    "newline_style": "Unix",
-    "tab_spaces": 2,
-    "imports_granularity": "Item",
-    "imports_layout": "HorizontalVertical",
-    "reorder_imports": true,
-    "group_imports": "StdExternalCrate",
-    "reorder_modules": true,
-    "format_code_in_doc_comments": true,
-    "normalize_comments": true,
-    "wrap_comments": true,
     "condense_wildcard_suffixes": true,
     "force_multiline_blocks": true,
+    "format_code_in_doc_comments": true,
     "format_macro_matchers": true,
     "format_strings": true,
+    "group_imports": "StdExternalCrate",
+    "hard_tabs": false,
+    "imports_granularity": "Item",
+    "imports_layout": "HorizontalVertical",
+    "indent_style": "Block",
+    "max_width": 100,
+    "newline_style": "Unix",
+    "normalize_comments": true,
     "reorder_impl_items": true,
-    "use_field_init_shorthand": true
+    "reorder_imports": true,
+    "reorder_modules": true,
+    "tab_spaces": 2,
+    "use_field_init_shorthand": true,
+    "wrap_comments": true
   },
-  "excludes": ["**/fixtures", "**/snapshots", "target/**"],
+  "excludes": [
+    "**/dist",
+    ".devenv/**",
+    "**/fixtures",
+    "**/snapshots",
+    "target/**",
+    "docs/book/**",
+    "crates/skribble_rust/tests/generated_code.rs"
+  ],
   "plugins": [
+    "https://plugins.dprint.dev/typescript-0.85.0.wasm",
+    "https://plugins.dprint.dev/json-0.17.3.wasm",
+    "https://plugins.dprint.dev/markdown-0.15.3.wasm",
+    "https://plugins.dprint.dev/toml-0.5.4.wasm",
     "https://plugins.dprint.dev/rustfmt-0.6.2.json@886c6f3161cf020c2d75160262b0f56d74a521e05cfb91ec4f956650c8ca76ca",
-    "https://plugins.dprint.dev/typescript-0.71.2.wasm",
-    "https://plugins.dprint.dev/json-0.15.4.wasm",
-    "https://plugins.dprint.dev/markdown-0.13.3.wasm",
-    "https://plugins.dprint.dev/toml-0.5.4.wasm"
+    "https://plugins.dprint.dev/exec-0.3.5.json@d687dda57be0fe9a0088ccdaefa5147649ff24127d8b3ea227536c68ee7abeab",
+    "https://plugins.dprint.dev/prettier-0.24.0.json@9a57d0d8e440ad90d07a503166af47e7a6a886abd46767933f9c279f72468596",
+    "https://plugins.dprint.dev/disrupted/css-0.2.2.wasm"
   ]
 }

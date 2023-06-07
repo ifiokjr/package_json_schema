@@ -2,10 +2,9 @@
 #![deny(clippy::pedantic)]
 #![deny(clippy::nursery)]
 #![deny(clippy::cargo)]
+#![allow(clippy::multiple_crate_versions)]
 
-doc_comment::doc_comment! {
-  include_str!("../readme.md")
-}
+doc_comment::doctest!("../readme.md");
 
 pub mod error;
 pub mod package_json;

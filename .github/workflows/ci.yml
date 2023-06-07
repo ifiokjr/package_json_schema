@@ -1,4 +1,4 @@
-name: ci
+name: "ci"
 
 on:
   push:
@@ -9,41 +9,44 @@ on:
     branches:
       - main
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
 jobs:
-  test:
-    name: test rust ${{matrix.rust}}
+  checks:
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         rust: [nightly, beta, stable, 1.60.0]
-
-    timeout-minutes: 5
-    runs-on: ubuntu-latest
-
     steps:
-      - name: 🏴‍☠️ Checkout
+      - name: checkout repository
         uses: actions/checkout@v3
 
-      - name: 🦀 Install rust
-        uses: ./.github/actions/rust
+      - name: setup development environment
+        uses: ./.github/actions/devenv
         with:
-          toolchain: ${{matrix.rust}}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          nix-cache: /tmp/nixcache
 
-      - name: 🩺 Format
-        uses: dprint/check@v2.0
+      - name: cache rust dependencies
+        uses: Swatinem/rust-cache@v2
+        with:
+          key: ${{ runner.os }}
 
-      - name: 👩‍⚕️ Lint
-        run: cargo clippy -- -D warnings
+      - name: build
+        run: build:all
+        shell: bash
 
-      - name: ✅ Test
-        run: |
-          cargo test
-          cargo test --all-features
+      - name: lint
+        run: lint:all
+        shell: bash
 
-      - name: ⛩ Check
-        run: |
-          cargo check
-          cargo check --all-features
+      - name: test
+        run: test:all
+        shell: bash
 
-      - name: 📦️ Package
+      - name: package
         run: cargo package

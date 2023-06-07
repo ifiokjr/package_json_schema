@@ -16,3 +16,9 @@ target/
 # End of https://www.toptal.com/developers/gitignore/api/Rust
 
 *.pending-snap
+
+# Devenv
+/.direnv
+.devenv*
+devenv.local.nix
+

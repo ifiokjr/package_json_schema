@@ -1,4 +1,3 @@
 [toolchain]
-# Find versions: https://rust-lang.github.io/rustup-components-history/
-channel = "1.65.0"
+channel = "1.70.0"
 profile = "default"

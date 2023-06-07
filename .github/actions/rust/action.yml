@@ -1,8 +1,8 @@
-name: 'rust installation'
-description: 'Setup rust and cargo'
+name: "rust installation"
+description: "Setup rust and cargo"
 inputs:
   toolchain:
-    description: 'The rust version to use. By default this uses the `rust-toolchain.toml` file'
+    description: "The rust version to use. By default this uses the `rust-toolchain.toml` file"
     required: false
   targets:
     description: Target triple to install for this toolchain
@@ -13,7 +13,7 @@ inputs:
     default: clippy, rustfmt, rust-src
 
 runs:
-  using: 'composite'
+  using: "composite"
   steps:
     - name: rust installation
       uses: dtolnay/rust-toolchain@master
