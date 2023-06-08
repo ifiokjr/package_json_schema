@@ -23,7 +23,8 @@ runs:
         restore-keys: ${{ runner.os }}-nix-cache-
 
     - name: rust toolchain
-      run: echo '[toolchain]\nchannel = "${{inputs.rust}}"\nprofile = "default"' > rust-toolchain.toml
+      run: |
+        sed -i 's/channel = ".*"/channel = "${{ inputs.rust }}"/' rust-toolchain.toml
       shell: bash
 
     - name: install nix
