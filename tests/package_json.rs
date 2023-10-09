@@ -47,6 +47,28 @@ fn parse_package_json_file_with_dependencies() {
 }
 
 #[test]
+fn parse_packages_json_file_with_typescript_fields() {
+  let contents = read_to_string("./tests/fixtures/5/package.json").unwrap();
+  let package_json = PackageJson::try_from(contents).unwrap();
+
+  insta::assert_json_snapshot!(package_json, @r###"
+  {
+    "types": "dist/index.d.ts",
+    "typesVersions": {
+      "*": {
+        "one": [
+          "dist/one/index.d.ts"
+        ],
+        "two": [
+          "dist/two/index.d.ts"
+        ]
+      }
+    }
+  }
+  "###);
+}
+
+#[test]
 fn create_package_json_file_with_builder_pattern() {
   let mut additional_fields: AdditionalFields = IndexMap::new();
   additional_fields.insert("custom".into(), "value".into());

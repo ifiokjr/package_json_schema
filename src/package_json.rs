@@ -66,8 +66,8 @@ pub struct PackageJson {
   #[builder(default, setter(into, strip_option))]
   pub version: Option<String>,
 
-  /// Version must be parseable by node-semver, which is bundled with npm as a
-  /// dependency.
+  /// Put a description in it. It's a string.
+  /// This helps people discover your package, as it's listed in npm search.
   #[serde(default, skip_serializing_if = "Option::is_none")]
   #[builder(default, setter(into, strip_option))]
   pub description: Option<String>,
@@ -165,7 +165,7 @@ pub struct PackageJson {
     skip_serializing_if = "Option::is_none"
   )]
   #[builder(default, setter(into, strip_option))]
-  pub types_versions: Option<IndexMap<String, String>>,
+  pub types_versions: Option<IndexMap<String, TypesVersion>>,
 
   /// Specify either a single file or an array of filenames to put in place for
   /// the man program to find.
@@ -393,6 +393,20 @@ pub enum Repository {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     directory: Option<String>,
   },
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone)]
+#[serde(untagged)]
+pub enum TypesVersion {
+  Path(String),
+  PathMapping(IndexMap<String, TypesVersionPaths>),
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone)]
+#[serde(untagged)]
+pub enum TypesVersionPaths {
+  Path(String),
+  PathList(Vec<String>),
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
