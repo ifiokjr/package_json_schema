@@ -1,0 +1,13 @@
+{
+  "types": "dist/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "one": [
+        "dist/one/index.d.ts"
+      ],
+      "two": [
+        "dist/two/index.d.ts"
+      ]
+    }
+  }
+}
