@@ -5,6 +5,7 @@ authors = ["Ifiok Jr. <ifiokotung@gmail.com>"]
 categories = ["encoding", "config"]
 documentation = "https://docs.rs/package_json_schema"
 edition = "2021"
+rust-version = "1.63"
 homepage = "https://github.com/ifiokjr/package_json_schema"
 include = ["src/**/*.rs", "Cargo.toml", "readme.md", "license"]
 keywords = ["schema", "package", "npm", "node", "json"]
@@ -19,7 +20,7 @@ crate-type = ["lib"]
 [dependencies]
 cfg-if = "1"
 doc-comment = "0.3"
-indexmap = { version = "1", features = ["serde-1"] }
+indexmap = { version = "2", features = ["serde"] }
 lazy_static = "1"
 regex = "1"
 semver = "1"
