@@ -7,28 +7,20 @@ inputs:
   nix-cache:
     description: The location of the nix cache
     required: true
-  rust:
-    description: The version of rust to use
-    required: true
 
 runs:
   using: composite
   steps:
     - name: cache nix store
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       id: nix-cache
       with:
         path: ${{ inputs.nix-cache }}
         key: ${{ runner.os }}-nix-cache-${{ hashFiles('**/devenv.nix', '**/devenv.yaml', '**/devenv.lock') }}
         restore-keys: ${{ runner.os }}-nix-cache-
 
-    - name: rust toolchain
-      run: |
-        sed -i 's/channel = ".*"/channel = "${{ inputs.rust }}"/' rust-toolchain.toml
-      shell: bash
-
     - name: install nix
-      uses: cachix/install-nix-action@v20
+      uses: cachix/install-nix-action@v27
       with:
         github_access_token: ${{ inputs.github-token }}
 
@@ -38,25 +30,50 @@ runs:
       shell: bash
 
     - name: enable cachix
-      uses: cachix/cachix-action@v12
+      uses: cachix/cachix-action@v15
       with:
         name: devenv
 
     - name: install devenv.sh
       run: |
         cachix use devenv
-        nix profile install --accept-flake-config github:cachix/devenv/v0.6.2
+        nix profile install --accept-flake-config nixpkgs#devenv
       shell: bash
 
-    - name: run devenv in ci
-      run: devenv ci
+    - name: build developer environment
+      run: devenv test
       shell: bash
 
-    - name: update paths
+    - name: update path with devenv
       run: devenv shell setup:ci
       shell: bash
 
     - name: export nix store cache
       if: steps.nix-cache.outputs.cache-hit != 'true'
       run: nix-store --export $(find /nix/store -maxdepth 1 -name '*-*')> ${{ inputs.nix-cache }}
+      shell: bash
+
+    - name: cache rust dependencies
+      uses: Swatinem/rust-cache@v2
+      with:
+        key: ${{ runner.os }}
+
+    - name: cache cargo binaries
+      uses: actions/cache@v4
+      with:
+        path: ./.bin
+        key: ${{ runner.os }}-cargo-bin-${{ env.RUSTUP_TOOLCHAIN }}-${{ hashFiles('rust-toolchain.toml', 'Cargo.toml') }}
+        restore-keys: |
+          ${{ runner.os }}-cargo-bin-
+
+    - name: cache local binaries
+      uses: actions/cache@v4
+      with:
+        path: ./.local-cache
+        key: ${{ runner.os }}-local-cache-${{ hashFiles('setup/cache-versions.json') }}
+        restore-keys: |
+          ${{ runner.os }}-local-cache-
+
+    - name: install dependencies
+      run: install:all
       shell: bash

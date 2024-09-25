@@ -17,6 +17,9 @@
   <a href="https://opensource.org/license/unlicense">
     <img src="https://img.shields.io/badge/license-Unlicence-blue.svg" alt="License" title="License" />
   </a>
+  <a href="https://codecov.io/github/ifiokjr/package_json_schema" >
+    <img src="https://codecov.io/github/ifiokjr/package_json_schema/graph/badge.svg?token=QCSIVQDOLT"/>
+  </a>
 </p>
 
 <br />
@@ -32,13 +35,13 @@ You want to load a `package.json` file and interact with it as a struct.
 Add this line to the `[dependencies]` section of your `Cargo.toml`:
 
 ```toml
-package_json_schema = "0.2.1"
+package_json_schema = "0.2"
 ```
 
 If you would like to include validation then add the `validate` feature.
 
 ```toml
-package_json_schema = { version = "0.2.1", features = ["validate"] }
+package_json_schema = { version = "0.2", features = ["validate"] }
 ```
 
 This adds the `validator` crate as a dependency and adds the `.validate()` method to the `PackageJson` struct. The fields are validated according to the [JSON schema specification](https://json.schemastore.org/package.json).
@@ -143,18 +146,48 @@ direnv allow .
 
 At this point you should see the `nix` commands available in your terminal.
 
+Run the following commands to install all the required dependencies.
+
+```bash
+install:all
+```
+
+This installs all cargo binaries locally so you don't need to worry about polluting your global namespace with required versions. The following scripts are added to your `PATH`.
+
+### `scripts`
+
+- build:all: Build all crates with all features activated.
+- build:docs: Build documentation site.
+- coverage:all: Generate a coverage report for the project
+- fix:all: Fix all fixable issues
+- fix:clippy: Fix all clippy issues
+- fix:format: Format the files with dprint
+- install:all: Install all packages.
+- lint:all: Lint the whole codebase and fail if any issues found.
+- lint:clippy: Check that lint rules are maintained for the entire project
+- lint:format: Check that formatting is correct for the project.
+- setup:ci: Setup the CI environment.
+- snapshot:update: Update all snapshots when running the test suite.
+- test:all: Run all tests for the project.
+- update:deps: Update dependencies.
+
 ### Upgrading `devenv`
 
 If you have an outdated version of `devenv` you can update it by running the following commands. If you have an easier way, please create a PR and I'll update these docs.
 
 ```bash
-nix profile list # find the index of the nxi package
-nix profile remove <index>
-nix profile install --accept-flake-config github:cachix/devenv/<version>
+nix profile list # find the <index> of the devenv package
+nix profile upgrade <index>
 ```
 
-<br />
+### Editor Setup
+
+To setup recommended configuration for your favorite editor run the following commands.
+
+```bash
+setup:vscode # Setup vscode
+```
 
 ## License
 
-This project is licensed under the [Unlicense license](license).
+Unlicense, see the [LICENSE](./license) file.
