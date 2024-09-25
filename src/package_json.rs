@@ -9,7 +9,6 @@ use serde::Serialize;
 use serde_json::Value;
 use typed_builder::TypedBuilder;
 
-
 cfg_if! {
   if #[cfg(feature = "validate")] {
 	use validator::Validate;
