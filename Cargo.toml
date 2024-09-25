@@ -11,7 +11,7 @@ keywords = ["schema", "package", "npm", "node", "json"]
 license = "Unlicense"
 readme = "readme.md"
 repository = "https://github.com/ifiokjr/package_json_schema"
-rust-version = "1.63"
+rust-version = "1.70"
 description = "Parse content from `package.json` content and consume the result as a `PackageJson` struct."
 
 [lib]
