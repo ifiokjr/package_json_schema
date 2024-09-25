@@ -6,6 +6,30 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [0.2.2](https://github.com/ifiokjr/package_json_schema/compare/v0.2.1...v0.2.2) - 2024-09-25
+
+### <!-- 0 -->🎉 Added
+
+- upgrade `validator` version and make changes
+
+### <!-- 1 -->🐛 Bug Fixes
+
+- set msrv to`1.70` supporting `once_cell` in `validator`
+- update `typesVersion` field spec to match docs ([#3](https://github.com/ifiokjr/package_json_schema/pull/3))
+- upgrade `indexmap` to v2 ([#4](https://github.com/ifiokjr/package_json_schema/pull/4))
+
+### <!-- 5 -->🎨 Styling
+
+- update formatting
+
+### <!-- 7 -->⚙️ Miscellaneous Tasks
+
+- ensure valid changelog name
+- test and build against msrv
+- automate releases
+- use sed for version change
+- rust versions
+
 > [Compare](https://github.com/ifiokjr/package_json_schema/compare/0.2.1...HEAD)
 
 ## 0.2.1
