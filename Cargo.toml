@@ -5,13 +5,13 @@ authors = ["Ifiok Jr. <ifiokotung@gmail.com>"]
 categories = ["encoding", "config"]
 documentation = "https://docs.rs/package_json_schema"
 edition = "2021"
-rust-version = "1.63"
 homepage = "https://github.com/ifiokjr/package_json_schema"
 include = ["src/**/*.rs", "Cargo.toml", "readme.md", "license"]
 keywords = ["schema", "package", "npm", "node", "json"]
 license = "Unlicense"
 readme = "readme.md"
 repository = "https://github.com/ifiokjr/package_json_schema"
+rust-version = "1.63"
 description = "Parse content from `package.json` content and consume the result as a `PackageJson` struct."
 
 [lib]
@@ -27,8 +27,8 @@ semver = "1"
 serde = { version = "1", features = ["derive"] }
 serde_json = { version = "1", features = ["preserve_order", "std"] }
 thiserror = "1"
-typed-builder = "0.14"
-validator = { version = "0.16", features = ["derive"], optional = true }
+typed-builder = "0.20"
+validator = { version = "0.18", features = ["derive"], optional = true }
 
 [dev-dependencies]
 insta = { version = "1", features = ["json"] }

@@ -27,3 +27,4 @@ codecov.json
 # setup
 /.helix
 /.vscode
+/.bin

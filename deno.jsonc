@@ -1,31 +1,31 @@
 {
-  "tasks": {
-    "bootstrap": "deno task setup:rust",
-    "fix": "deno task fix:clippy && deno task fix:format",
-    "fix:format": "dprint fmt",
-    "fix:clippy": "cargo clippy --fix --allow-dirty --allow-staged",
-    "lint:format": "dprint check",
-    "lint:clippy": "cargo clippy",
-    "setup:rust": "cargo insta -h || cargo install cargo-insta; cargo upgrade -h || cargo install cargo-edit || cargo install cargo-audit --features=fix",
-    "snapshot": "cargo insta review",
-    "test": "cargo test",
-    "update:crates": "cargo upgrade",
-    "update:dprint": "dprint config update",
-    "update": "deno task update:crates && deno task update:dprint"
-  },
-  "compilerOptions": {
-    "noUncheckedIndexedAccess": true,
-    "noImplicitOverride": true
-  },
-  "lint": {
-    "files": {
-      "include": ["./"],
-      "exclude": ["**/fixtures", "**/snapshots"]
-    },
-    "rules": {
-      "tags": ["recommended"],
-      "include": [],
-      "exclude": ["ban-types"]
-    }
-  }
+	"tasks": {
+		"bootstrap": "deno task setup:rust",
+		"fix": "deno task fix:clippy && deno task fix:format",
+		"fix:format": "dprint fmt",
+		"fix:clippy": "cargo clippy --fix --allow-dirty --allow-staged",
+		"lint:format": "dprint check",
+		"lint:clippy": "cargo clippy",
+		"setup:rust": "cargo insta -h || cargo install cargo-insta; cargo upgrade -h || cargo install cargo-edit || cargo install cargo-audit --features=fix",
+		"snapshot": "cargo insta review",
+		"test": "cargo test",
+		"update:crates": "cargo upgrade",
+		"update:dprint": "dprint config update",
+		"update": "deno task update:crates && deno task update:dprint"
+	},
+	"compilerOptions": {
+		"noUncheckedIndexedAccess": true,
+		"noImplicitOverride": true
+	},
+	"lint": {
+		"files": {
+			"include": ["./"],
+			"exclude": ["**/fixtures", "**/snapshots"]
+		},
+		"rules": {
+			"tags": ["recommended"],
+			"include": [],
+			"exclude": ["ban-types"]
+		}
+	}
 }

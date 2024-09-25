@@ -1,0 +1,23 @@
+[alias]
+insta = ["bin", "cargo-insta"]
+llvm-cov = ["bin", "cargo-llvm-cov"]
+nextest = ["bin", "cargo-nextest"]
+semver-checks = ["bin", "cargo-semver-checks"]
+
+test_default = ["nextest", "run"]
+test_all = ["nextest", "run", "--all-features"]
+test_docs_default = ["test", "--doc"]
+test_docs_all = ["test", "--doc", "--all-features"]
+
+coverage_default = ["llvm-cov", "--no-report"]
+coverage_all = ["llvm-cov", "--no-report", "--all-features"]
+coverage_docs_default = ["llvm-cov", "--no-report", "--doc"]
+coverage_docs_all = ["llvm-cov", "--no-report", "--all-features", "--doc"]
+coverage_codecov_report = [
+	"llvm-cov",
+	"report",
+	"--doctests",
+	"--codecov",
+	"--output-path",
+	"codecov.json",
+]
