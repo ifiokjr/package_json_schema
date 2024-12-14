@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [0.3.0](https://github.com/ifiokjr/package_json_schema/compare/v0.2.2...v0.3.0) - 2024-12-14
+
+### <!-- 0 -->🎉 Added
+
+- [**breaking**] upgrade msrv
+
+### <!-- 7 -->⚙️ Miscellaneous Tasks
+
+- upgrade `validator` to latest
+
 ## [0.2.2](https://github.com/ifiokjr/package_json_schema/compare/v0.2.1...v0.2.2) - 2024-09-25
 
 ### <!-- 0 -->🎉 Added
